@@ -38,8 +38,9 @@
 
   --footer-background-social: rgb(255 255 255 / 0.1);
 
+  --backdrop-background: rgb(0 0 0 / 0.2);
+
   --modal-box-shadow: var(--team-box-shadow);
-  --modal-border-radius: 4px;
 
   --modal-close-btn-border: 1px solid rgb(0 0 0 / 0.1);
 
@@ -582,7 +583,7 @@ img {
   background: var(--project-background-overlay);
 
   transform: translateY(100%);
-  transition: transform 250ms var(--transition-timing-function);
+  transition: transform var(--transition-duration) var(--transition-timing-function);
 }
 
 .project-item:hover .project-img-overlay {
@@ -624,7 +625,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--backdrop-background);
 
   opacity: 1;
   visibility: visible;
@@ -647,7 +648,7 @@ img {
 
   background-color: var(--main-light);
   box-shadow: var(--modal-box-shadow);
-  border-radius: var(--modal-border-radius);
+  border-radius: 4px;
 
   transform: translate(-50%, -50%) scale(1);
   transition: transform var(--transition-duration);
