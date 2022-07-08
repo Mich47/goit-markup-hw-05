@@ -30,7 +30,7 @@
   --product-subtitle-background: rgb(47 48 58 / 0.8);
 
   --team-box-shadow: 0px 1px 3px rgb(0 0 0 / 0.12), 0px 1px 1px rgb(0 0 0 / 0.14),
-    0px 2px 1px rgba(0 0 0 / 0.2);
+    0px 2px 1px rgb(0 0 0 / 0.2);
   --team-border-radius: 0px 0px 4px 4px;
 
   --client-border: 1px solid #afb1b8;
@@ -38,9 +38,16 @@
 
   --footer-background-social: rgb(255 255 255 / 0.1);
 
+  --modal-box-shadow: var(--team-box-shadow);
+  --modal-border-radius: 4px;
+
+  --modal-close-btn-border: 1px solid rgb(0 0 0 / 0.1);
+
   /* Grid setting */
   --project-items: 2;
   --project-indent: 30px;
+
+  --project-background-overlay: rgb(33 150 243 / 0.9);
 
   /* Transition setting */
   --transition-duration: 250ms;
@@ -555,6 +562,40 @@ img {
   cursor: pointer;
 }
 
+.project-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  display: flex;
+  align-items: center;
+  padding: 24px;
+
+  background: var(--project-background-overlay);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--transition-timing-function);
+}
+
+.project-item:hover .project-img-overlay {
+  transform: translateY(0);
+}
+
+.project-img-desc {
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--main-light);
+}
+
 .project-wrapper {
   padding: 20px 24px;
   border: var(--border-color);
@@ -587,31 +628,33 @@ img {
 
   opacity: 1;
   visibility: visible;
-  /* transform: scale(1); */
-  transition-property: visibility, opacity, transform;
-  transition-duration: 1500ms;
+
+  transition: visibility var(--transition-duration), opacity var(--transition-duration);
 }
 
 .backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
-  /* transform: scale(0.5); */
 }
 
 .modal {
   position: absolute;
-  width: 228px;
-  height: 281px;
+  min-width: 528px;
+  min-height: 581px;
   left: 50%;
   top: 50%;
 
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  background-color: var(--main-light);
+  box-shadow: var(--modal-box-shadow);
+  border-radius: var(--modal-border-radius);
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--transition-duration);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
 }
 
 .modal-close-btn {
@@ -626,6 +669,6 @@ img {
   justify-content: center;
 
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: var(--modal-close-btn-border);
   cursor: pointer;
 }
